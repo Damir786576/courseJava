@@ -14,13 +14,12 @@ public class ExamController {
     private ExaminerService examinerService;
 
     @Autowired
-    public ExamController(ExaminerService examinerService) {
+    public ExamController(ExaminerService examinerService)   {
         this.examinerService = examinerService;
     }
-    @RequestMapping("/exam/questions/{amount}")
+    @RequestMapping("/exam/get/{amount}")
     public Collection<Question> getQuestions(@PathVariable int amount) {
         Collection<Question> questions = examinerService.getAllQuestions(amount);
         return questions;
     }
 }
-

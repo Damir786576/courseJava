@@ -1,11 +1,18 @@
 package com.coursework.Javacore.service;
 
 import com.coursework.Javacore.model.Question;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class JavaQuestionService implements QuestionService {
-    private final List<Question> questions = new ArrayList<>();
+    private final List<Question> questions = new ArrayList<>() {
+        {
+            add(new Question("Что такое Java?", "Java — это объектно-ориентированный язык программирования."));
+            add(new Question(" Какие типы данных в Java есть?", "byte, short, int, long, float, double, char, boolean"));
+        }
+    };
 
     @Override
     public Question add(String question, String answer) {

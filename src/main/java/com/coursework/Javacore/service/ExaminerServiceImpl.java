@@ -4,8 +4,8 @@ import com.coursework.Javacore.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
@@ -45,6 +45,8 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public Collection<Question> getAllQuestions(int amount) {
-        return questionService.getAllQuestions();
+        List<Question> allQuestions = new ArrayList<>(questionService.getAllQuestions());
+        Collections.shuffle(allQuestions);
+        return allQuestions.stream().limit(amount).collect(Collectors.toList());
     }
 }

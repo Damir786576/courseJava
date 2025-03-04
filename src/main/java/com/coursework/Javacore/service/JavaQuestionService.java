@@ -2,13 +2,10 @@ package com.coursework.Javacore.service;
 
 import com.coursework.Javacore.model.Question;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class JavaQuestionService implements QuestionService {
-    private List<Question> questions = new ArrayList<>();
+    private final List<Question> questions = new ArrayList<>();
 
     @Override
     public Question add(String question, String answer) {
@@ -43,5 +40,14 @@ public class JavaQuestionService implements QuestionService {
     @Override
     public Collection<Question> getAllQuestions() {
         return new ArrayList<>(questions);
+    }
+
+    public Question getRandomQuestion() {
+        if (questions.isEmpty()) {
+            throw new RuntimeException("Список вопросов пуст");
+        }
+        Random random = new Random();
+        int randomIndex = random.nextInt(questions.size());
+        return questions.get(randomIndex);
     }
 }
